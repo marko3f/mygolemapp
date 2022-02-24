@@ -1,0 +1,37 @@
+Package: myGolemApp
+Title: A Golem app
+Version: 0.0.0.9000
+Authors@R: person('Tom', 'Riddle', email = 'you-know-who@sbgenomics.com', role = c('cre', 'aut'))
+Description: A simple Shiny app built to demonstrate the usage of the Golem framework. 
+                     It allows you to explore the data related to the Harry Potter movies.
+                     The original data comes from kaggle (https://www.kaggle.com/gulsahdemiryurek/harry-potter-dataset).
+                     Due to greater portability, the data is built into this package and does not need to be loaded manually.
+                     The application itself is very simple, made with the aim of demonstrating the use of some of the basic
+                     functionalities and benefits of the Golem framework.
+License: MIT + file LICENSE
+Imports: 
+    attempt,
+    config (>= 0.3.1),
+    dplyr,
+    DT,
+    ggplot2,
+    glue,
+    golem (>= 0.3.1),
+    htmltools,
+    shiny (>= 1.6.0),
+    shinydashboard,
+    shinyWidgets,
+    stringr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/marko3f/mygolemapp.git
+BugReports: https://github.com/marko3f/mygolemapp.git/issues

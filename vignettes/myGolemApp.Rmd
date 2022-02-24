@@ -1,0 +1,19 @@
+---
+title: "myGolemApp"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{myGolemApp}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(myGolemApp)
+```

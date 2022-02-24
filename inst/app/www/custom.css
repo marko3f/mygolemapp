@@ -1,0 +1,6 @@
+ /* Primary box styling */
+.box.box-solid.box-primary>.box-header {
+  background: #14304d;
+  background-color: #14304d;
+  color: #fff;
+}
