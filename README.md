@@ -12,7 +12,5 @@ A simple Shiny app built to demonstrate the usage of the Golem framework. It all
 You can install the latest version of myGolemApp from [GitHub](https://github.com/marko3f/mygolemapp) with:
 
 ``` r
-devtools::install_github("marko3f/mygolemapp", auth_token = <your_github_personal_access_token>)
+devtools::install_github("marko3f/mygolemapp")
 ```
-
-Keep in mind that you must have access to the said repository.
