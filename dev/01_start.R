@@ -39,7 +39,7 @@ golem::set_golem_options(golem_version = "0.0.1")
 ## Create Common Files ----
 ## See ?usethis for more information
 usethis::use_mit_license( "Seven Bridges" )  # You can set another license here
-usethis::use_readme_rmd( open = FALSE )      # Used
+usethis::use_readme_md( open = FALSE )      # Used
 usethis::use_code_of_conduct()
 usethis::use_lifecycle_badge( "Experimental" )  # Used
 usethis::use_news_md( open = FALSE )            # Used

@@ -1,6 +1,6 @@
 Package: myGolemApp
 Title: A Golem app
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: person('Tom', 'Riddle', email = 'you-know-who@sbgenomics.com', role = c('cre', 'aut'))
 Description: A simple Shiny app built to demonstrate the usage of the Golem framework. 
                      It allows you to explore the data related to the Harry Potter movies.
