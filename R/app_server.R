@@ -11,35 +11,28 @@ app_server <- function( input, output, session ) {
   mod_character_explorer_server(id = "characters_table",
                                 my_data = myGolemApp::characters,  # built-in data
                                 character = reactive(input$character))
-  # If a module needs to access an input that isn’t part of the module,
+  # If a module needs to access an input that isn’t part of the module, 
   # the containing app should pass the input value wrapped in a reactive expression
 
-  # Load movie script data for the selected movie (reactive variable)
-  movie_script_selection <- eventReactive(input$movie_script_selector, {
-    if (input$movie_script_selector == "Harry Potter and the Philosopher's Stone") {
-      load_and_manipulate_script_data(data = myGolemApp::hp_movie_1)  # built-in data
-    } else if (input$movie_script_selector == "Harry Potter and the Chamber of Secrets") {
-      load_and_manipulate_script_data(data = myGolemApp::hp_movie_2)  # built-in data
-    } else if (input$movie_script_selector == "Harry Potter and the Prisoner of Azkaban") {
-      load_and_manipulate_script_data(data = myGolemApp::hp_movie_3)  # built-in data
-    }
-  })
   
   # Call server part for the character_mentions module
-  mod_character_mentions_server(id = "character_mention_distribution_plot",
-                                movie_selector = reactive(input$movie_script_selector),
-                                movie_script = movie_script_selection)
+  mod_character_mentions_server(id = "character_mention_distribution_plot")
   # If a module needs to access an input that isn’t part of the module, 
   # the containing app should pass the input value wrapped in a reactive expression
   
   
   # Call server part for the render_data_table module
-  # Note that we are using the same module twice - with different IDs and for different data
+  # We are using the same module twice - with different IDs and for different data
+  # 1
   mod_render_data_table_server(id = 'spells_table',
                                my_data = myGolemApp::spells)  # use built-in data
   
+  # 2
   mod_render_data_table_server(id = 'potions_table',
                                my_data = myGolemApp::potions) # use built-in data
+  
+  # Notice that here we are providing the data as a parameter to the module's function.
+  # However, that is not necessary, we could simple load it inside the module as well.
   
   
   # Add observe event for button on the landing page
@@ -52,7 +45,7 @@ app_server <- function( input, output, session ) {
     
     golem::invoke_js("update_background", background_color_url)
     
-    ## The same could be achieved in this way:
+    ## The same could be achieved this way:
     # message(background_color)
     #  session$sendCustomMessage(
     #   type = "update_background",
