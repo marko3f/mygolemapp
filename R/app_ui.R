@@ -9,7 +9,7 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic 
-    # By default, golem uses a fluidPage(), but here we'll go with  the navbarPage... Why not?
+    # By default, golem uses a fluidPage(), but here we'll go with  the navbarPage...
     navbarPage(
       windowTitle = "Harry Potter 1-2-3",
       id = "HP_navbar_page",
@@ -57,6 +57,13 @@ app_ui <- function(request) {
       ),
       
       tabPanel(
+        title = "Movie Scripts Data",
+        icon = icon("film"),
+        value = "movies",
+        mod_character_mentions_ui("character_mention_distribution_plot")
+      ),
+      
+      tabPanel(
         title = "Characters",
         icon = icon("hat-wizard"),
         value = "character_explore",
@@ -69,42 +76,22 @@ app_ui <- function(request) {
                       multiple = FALSE,
                       selected = myGolemApp::characters$Name[1])
         ),
+
         mainPanel(
           width = 9,
           mod_character_explorer_ui("characters_table")
         )
       ),
-      tabPanel(
-        title = "Movie Scripts Data",
-        icon = icon("film"),
-        value = "movies",
-        #includeCSS(path = "app/www/bootsbg.css"), # there is no need to explicitly load this file
-        sidebarPanel(
-          width = 3,
-          selectInput(inputId = "movie_script_selector",
-                      label = "Select movie part",
-                      choices = c("Harry Potter and the Philosopher's Stone", 
-                                  "Harry Potter and the Chamber of Secrets", 
-                                  "Harry Potter and the Prisoner of Azkaban"),
-                      selected = "Harry Potter and the Philosopher's Stone",
-                      multiple = FALSE
-          ),
-        ),
-        mainPanel(
-          width = 9,
-          mod_character_mentions_ui("character_mention_distribution_plot")
-        )
-      ),
+      
       tabPanel(
         title = "Explore Spells & Potions",
         icon = icon("magic"),
         value = "spells_and_potions",
-        #includeCSS(path = "app/www/bootsbg.css"),  # there is no need to explicitly load this file
-        #includeCSS(path = "app/www/custom.css"),   # there is no need to explicitly load this file
-        column(6, 
+        # includeCSS(path = "app/www/custom.css"),   # there is no need to explicitly load this file
+        column(6,
                mod_render_data_table_ui('spells_table', type_of_data = 'spells'),
         ),
-        column(6, 
+        column(6,
                mod_render_data_table_ui('potions_table', type_of_data = 'potions', title_icon = 'wine-bottle')
         )
       )
