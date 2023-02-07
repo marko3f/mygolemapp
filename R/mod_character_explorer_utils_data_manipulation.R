@@ -11,7 +11,6 @@
 #' @return Filtered data frame.
 #' 
 #' @noRd
-
 basic_characters_data_manipulation <- function(characters_dataset, selected_character, columns_to_exclude = c("Id")) {
   # Filter data such that the resulting data frame contains only the data
   # for the selected character + exclude specified columns
