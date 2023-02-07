@@ -1,0 +1,71 @@
+---
+title: "business-logic"
+output: html_document
+date: "2023-02-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This script contains some business-logic function for the Shiny app. These functions will later be used inside the app's server code, but also within some modules.
+
+For example, suppose we need to generate a bar plot that shows how many times certain characters appeared in a selected Harry Potter movie.
+We need to load script data (we have some built-in package data) and then to generate a bar plot.
+
+What to return?   ggplot
+
+```{r character mentions}
+# Helper function for data loading
+load_and_manipulate_script_data <- function(data) {
+  movie_script_data <- data
+  colnames(movie_script_data) <- tolower(colnames(movie_script_data))
+  return(movie_script_data)
+}
+
+# Load some built-in data
+movie_script_data <- load_and_manipulate_script_data(myGolemApp::hp_movie_1)  # built-in data
+# The built-in data was previously prepared. 
+# The preparation code is in the data-raw/hp_movie_1.R script.
+
+# Generate plot
+ggplot2::ggplot(movie_script_data, ggplot2::aes(x = reorder(character,character,
+                                           function(x)-length(x)))) +
+        geom_bar(fill = "#14304d") +
+        ggtitle(paste("How Many Times Each Character Spoke in the ", 
+                      "Harry Potter and the Philosopher's Stone")) +
+        xlab("Characters") + 
+        ylab("Number of times mentioned") +
+        theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), 
+              plot.title = element_text(hjust = 0.5))
+```
+
+Next, we have a dataset that contains some basic information about each of the characters that appear in the first three Harry Potter movies.
+We need to select on of them, filter the table so that only information about that character remains in it, and, we also want to delet dots from
+the column names (replace them with spaces). Also, we want to eliminate the id column from our table, because it's useless.
+
+Steps:
+  - load
+  - filter
+  - manipulate
+  
+What to return?   Resulting data frame (we expect it to have one row only - for one character)
+
+```{r character exploration}
+library(dplyr)
+# load character data (built-in data)
+characters_dataset <-  myGolemApp::characters
+
+# Filter data such that the resulting data frame contains only the data
+# for the selected character + exclude specified columns
+filtered_data <- characters_dataset %>% 
+  dplyr::filter(Name == "Hermione Jean Granger") %>% 
+  dplyr::select(-"Id")
+
+# Remove dots from column names
+names(filtered_data) <- gsub("\\.", " ", names(filtered_data))
+
+filtered_data
+```
